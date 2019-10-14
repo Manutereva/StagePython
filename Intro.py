@@ -96,7 +96,7 @@ for i in range(len(ma_liste)):
     
 
 
-# In[55]:
+# In[61]:
 
 
 liste_prenoms = [
@@ -110,7 +110,10 @@ for prenom, age in zip(liste_prenoms, liste_ages):
     print(f"Prenom : {prenom} et age : {age}")
     
 for i, val in enumerate(liste_prenoms):
-    print(f"prenom n {i} : {val}")
+    print(f"prenom n {i} : {val}") # f-string en python 3 seulement
+
+for i, val in enumerate(liste_prenoms):
+    print("prenom n %d : %s"%(i, val)) # old school : Python 2 et 3
 
 
 # In[56]:
@@ -165,8 +168,230 @@ if age % 3 == 0:
 # * fizz
 # ...
 
+# In[63]:
+
+
+for i in range(101):
+    if i % 3 == 0 and i % 5 == 0:
+        print("bazz")
+    elif i % 3 == 0:
+        print("fizz")
+    elif i % 5 == 0:
+        print("buzz")
+    else:
+        print(i)
+
+
+# In[64]:
+
+
+a = range(100)
+print(a)
+
+
+# In[65]:
+
+
+a = list(range(100))
+print(a)
+
+
+# In[69]:
+
+
+nom = input("Quel est votre nom ?")
+age = int(input("Quel est votre age ?")) # int( ) pour conversion en entier
+
+print(f"votre nom est {nom} et votre age est {age}.")
+
+print(f"L'année prochaine vous aurez {age + 1}.")
+
+
+# In[67]:
+
+
+print(nom)
+
+
+# In[72]:
+
+
+from random import randint
+
+nb_secret = randint(0,100)
+proposition = -1
+# !=
+# Tant que l'utilisateur n'a pas trouvé le secret
+# On lui demande de faire une proposition
+# On lui répond si c'est trop petit, trop grand ou égal
+while proposition != nb_secret:
+    proposition = int(input("Quel est votre proposition ?"))
+    if proposition < nb_secret:
+        print("Vous êtes trop petit")
+    elif proposition > nb_secret:
+        print("Vous êtes trop grand")
+    
+print("C'est gagné")
+
+
+# In[74]:
+
+
+borne_min = 0
+borne_max = 101
+
+proposition = ( borne_min + borne_max ) // 2
+
+trouve = False
+
+while not trouve:
+    reponse = input(f"Nous pensons que c'est {proposition}. Est-ce exacte ? P/G/E")
+    if reponse == "P":
+        borne_max = proposition
+    if reponse == "G":
+        borne_min = proposition
+    if reponse == "E":
+        trouve = True
+    proposition = ( borne_min + borne_max ) // 2
+
+print("Vous avez gagné !")
+
+
+# In[94]:
+
+
+def change_first(liste):
+    liste[0] = 15
+
+def addition(a,b):
+    return a + b
+
+def dire_bonjour(nom, prenom="", age=42):
+    return f"Bonjour {nom} {prenom}. Vous avez {age} ans."
+
+
+a = 5
+b = 2
+a = addition(a, b)
+
+ma_liste = [3,5,1]
+change_first(ma_liste)
+print(ma_liste)
+# dire_bonjour("Martin")
+# a = dire_bonjour("Helene")
+
+# print(a)
+
+
+# In[92]:
+
+
+a = "14ké" #"1111111111111111111111111111111111111111111111111111111111111111111111é"
+b = "14ké" #"1111111111111111111111111111111111111111111111111111111111111111111111é"
+# id(a)
+
+a is b
+
+
+# In[99]:
+
+
+def dire_bonjour(nom, prenom="", age=42):
+    return f"Bonjour {nom} {prenom}. Vous avez {age} ans."
+
+dire_bonjour("Dupont")
+dire_bonjour("Dupont", "Laurent")
+dire_bonjour("Dupont", "Laurent", 35)
+print(dire_bonjour("Dupont", 35))
+print(dire_bonjour("Dupont", age=35))
+
+
+# In[102]:
+
+
+a = 4
+
+def affiche_a():
+    print(a)
+  
+a = 6
+affiche_a()
+
+
+# In[101]:
+
+
+a = 5
+
+def affiche_a():
+    a = 4
+    print(a)
+    
+affiche_a()
+print(a)
+
+
+# In[103]:
+
+
+a = 5
+
+def affiche_a():
+    print(a)
+    a = 4
+
+    
+affiche_a()
+print(a)
+
+
+# In[104]:
+
+
+a = 5
+
+def affiche_a():
+    global a
+    a = 4
+    print(a)
+
+affiche_a()
+print(a)
+
+
+# In[107]:
+
+
+personne = {"nom": "Depardieu", "prenom": "Gerard", "age": 70}
+
+def dire_bonjour(param_personne):
+    param_personne["prenom"] = "Guillaume"
+    print(f"Bonjour {param_personne['nom']} {param_personne['prenom']}")
+  
+
+dire_bonjour(personne)
+print(f"Bonjour {personne['nom']} {personne['prenom']}")
+      
+
+
+# In[112]:
+
+
+mon_tuple = (45,74,8,12)
+mon_tuple[0] = 15
+print(mon_tuple[0])
+tu = (2,)
+
+
 # In[ ]:
 
 
+# Tri bulle
 
+def tri_bulle(array):
+    sorted_list = array.copy()
+    
+    return sorted_list
+
+tri_bulle([3,1,7,5,9,0])
 
