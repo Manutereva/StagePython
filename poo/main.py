@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+from JeuVoiture.Terrain import Terrain
 
-from JeuVoiture.Voiture import Voiture
 
 """
     Définir dans voiture une classe Voiture
@@ -11,8 +11,9 @@ from JeuVoiture.Voiture import Voiture
     tourner()
 """
 
-voiture = Voiture([3,4])
+terrain = Terrain()
 
-for i in range(10):
-    voiture.avancer()
-    print(voiture.position)
+for i in range(20):
+    terrain.fait_un_tour()
+    terrain.display()
+    
