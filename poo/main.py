@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from JeuVoiture.Terrain import Terrain
+from time import sleep
+import os
 
 
 """
@@ -13,7 +15,9 @@ from JeuVoiture.Terrain import Terrain
 
 terrain = Terrain()
 
-for i in range(20):
+for i in range(50):
+    os.system("cls")
     terrain.fait_un_tour()
     terrain.display()
+    sleep(0.5)
     

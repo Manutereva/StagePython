@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from .Voiture import Voiture
 import numpy as np
+from random import randint
+
 
 class Terrain:
     """
@@ -14,6 +16,12 @@ class Terrain:
         La méthode display afficher la position de chaque voiture
     """
     def __init__(self):
+        """
+            Ajouter plusieurs voitures aléatoirement avec randint
+            Ajouter des obstacles (il faut se créer la classe Obtacle)
+            Les voitures ne peuvent pas se superposer
+            ni traverser les obstacles
+        """
         self.liste_voitures = [Voiture([2,4])]
         self.taille = np.array([10,10])
         
@@ -22,8 +30,15 @@ class Terrain:
             voit.avancer(self.check_obstacle)
             
     def display(self):
-        for i, voit in enumerate(self.liste_voitures):
-            print(f"voiture n{i} : {voit.position}")
+        print("debut")
+        for i in range(self.taille[0]+1):
+            ligne = []
+            for j in range(self.taille[1]+1):
+                if self._is_voiture(i,j):
+                    ligne.append("X")
+                else:
+                    ligne.append(" ")
+            print(ligne)
             
     def check_obstacle(self, position):
         """
@@ -33,4 +48,9 @@ class Terrain:
         return ((position > self.taille).any() or
                 (position < np.array([0,0])).any())
         
+    def _is_voiture(self, i, j):
+        for voit in self.liste_voitures:
+            if (voit.position == [i,j]).all():
+                return True
+        return False
     
