@@ -12,7 +12,6 @@ class Voiture:
         new_position = self.position + self.vecteur_vitesse
         if check_obstacle(new_position):
             self.tourner()
-            self.avancer(check_obstacle)
         else:
             self.position = new_position
         

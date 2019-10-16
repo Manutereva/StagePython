@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from .Voiture import Voiture
+from .Obstacle import Obstacle
 import numpy as np
-from random import randint
+from random import randint as rd
 
 
 class Terrain:
@@ -22,35 +23,47 @@ class Terrain:
             Les voitures ne peuvent pas se superposer
             ni traverser les obstacles
         """
-        self.liste_voitures = [Voiture([2,4])]
+        self.liste_obstacles = [Obstacle([rd(0,10),rd(0,10)]) for i in range(10)]
+        self.liste_voitures = [Voiture([rd(0,10),rd(0,10)]) for i in range(5)]
         self.taille = np.array([10,10])
         
     def fait_un_tour(self):
         for voit in self.liste_voitures:
-            voit.avancer(self.check_obstacle)
+            voit.avancer(self.is_accessible)
             
     def display(self):
         print("debut")
         for i in range(self.taille[0]+1):
             ligne = []
             for j in range(self.taille[1]+1):
-                if self._is_voiture(i,j):
+                if self._is_voiture([i,j]):
                     ligne.append("X")
+                elif self._is_obstacle([i,j]):
+                    ligne.append("O")
                 else:
                     ligne.append(" ")
-            print(ligne)
+            print("".join(ligne))
             
-    def check_obstacle(self, position):
+    def is_accessible(self, position):
         """
             return False si la position est accessible sur le
             terrain sinon return True
         """
-        return ((position > self.taille).any() or
+        inside_board = ((position > self.taille).any() or
                 (position < np.array([0,0])).any())
+        return inside_board or \
+            self._is_obstacle(position) or \
+            self._is_voiture(position) \
         
-    def _is_voiture(self, i, j):
+    def _is_voiture(self, position):
         for voit in self.liste_voitures:
-            if (voit.position == [i,j]).all():
+            if (voit.position == position).all():
+                return True
+        return False
+
+    def _is_obstacle(self, position):
+        for obs in self.liste_obstacles:
+            if (obs.position == position).all():
                 return True
         return False
     
