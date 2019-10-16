@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from JeuVoiture.Terrain import Terrain
-from time import sleep
-import os
+from JeuVoiture.TerrainUI import TerrainUI
+#from time import sleep
+#import os
 
 
 """
@@ -13,11 +13,13 @@ import os
     tourner()
 """
 
-terrain = Terrain()
+terrain = TerrainUI()
 
-for i in range(50):
-    os.system("cls")
-    terrain.fait_un_tour()
-    terrain.display()
-    sleep(0.5)
+terrain.start()
+
+#for i in range(50):
+#    os.system("cls")
+#    terrain.fait_un_tour()
+#    terrain.display()
+#    sleep(0.5)
     
