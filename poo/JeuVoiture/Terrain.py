@@ -23,9 +23,9 @@ class Terrain:
             Les voitures ne peuvent pas se superposer
             ni traverser les obstacles
         """
-        self.liste_obstacles = [Obstacle([rd(0,10),rd(0,10)]) for i in range(10)]
-        self.liste_voitures = [Voiture([rd(0,10),rd(0,10)]) for i in range(5)]
-        self.taille = np.array([10,10])
+        self.taille = np.array([4,4])
+        self.liste_obstacles = [Obstacle([rd(0,self.taille[0]),rd(0,self.taille[1])]) for i in range(3)]
+        self.liste_voitures = [Voiture([rd(0,self.taille[0]),rd(0,self.taille[1])]) for i in range(2)]
         
     def fait_un_tour(self):
         for voit in self.liste_voitures:

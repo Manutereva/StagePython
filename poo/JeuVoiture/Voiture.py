@@ -17,3 +17,7 @@ class Voiture:
         
     def tourner(self):
         self.vecteur_vitesse = self.vecteur_vitesse.dot(np.array([[0,1],[-1,0]]))
+
+    def photo_image(self):
+        if self.vecteur_vitesse.array_equal([0,1]):
+            return PhotoImage(file="car.png")
