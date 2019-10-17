@@ -2,6 +2,7 @@
 from .Terrain import Terrain
 from tkinter import Tk, Canvas, PhotoImage
 from random import randint as rd
+from PIL import Image, ImageTk
 
 
 class TerrainUI(Terrain):
@@ -16,8 +17,6 @@ class TerrainUI(Terrain):
                 )
         self.canvas.pack()
         
-        self.photo_voiture = PhotoImage(file="car.png")
-
     def run(self):
         self.fait_un_tour()
         self.canvas.delete("all")
@@ -25,7 +24,7 @@ class TerrainUI(Terrain):
             self.canvas.create_image(
                     128*voit.position[0] + 64,
                     128*voit.position[1] + 64,
-                    image=self.photo_voiture)
+                    image=voit.photo_image())
         
         self.fen.after(1000, self.run)
     def start(self):

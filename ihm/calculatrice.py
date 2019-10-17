@@ -1,13 +1,25 @@
 # -*- coding: utf-8 -*-
 
-from tkinter import Tk, Label, Button, Frame
+from tkinter import Tk, Label, Button, Frame, StringVar
 from tkinter import BOTTOM, LEFT, RIGHT, TOP
 from itertools import product
 
-
+"""
+    1 etape: Afficher les chiffres les uns à la suite des autres
+    2 etape: Prendre en compte l'opérateur 
+            (remise à zero de l'affichage et sauvegarde de l'opérateur)
+    3 etape: Quand on appuie sur "Enter" faire le calcul
+"""
 fen = Tk()
 
-label = Label(fen, text="", height=2)
+resultat = StringVar()
+resultat.set("0")
+
+def handle_number(e):
+    print(e.widget.cget("text"))
+    resultat.set(e.widget.cget("text"))
+    
+label = Label(fen, textvariable=resultat, height=2)
 label.pack()
 
 button_enter = Button(fen, text="Enter", height=2)
@@ -29,5 +41,6 @@ for op in ["+","-","*","/"]:
 for i,j in product(range(3), range(3)):
     button = Button(frame_numbers, text=f"{3*(2-i)+j+1}", width=5, height=2)
     button.grid(column=j, row=i)
+    button.bind("<Button-1>", handle_number)
     
 fen.mainloop()
